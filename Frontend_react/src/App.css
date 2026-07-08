@@ -1,0 +1,261 @@
+/* Map fullscreen */
+#map {
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  padding-top: 0px;
+  margin: 0;
+}
+
+
+.dashboard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  background: rgba(197, 192, 255, 0.95);
+  padding: 20px 20px;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: none;
+  text-align: left;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dashboard h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 1;
+  margin-left: 650px;
+}
+
+.search-box input {
+  max-width: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 100px;
+  padding: 8px 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-box input:focus {
+  border-color: #0078ff;
+}
+
+.search-box button {
+  background: #0078ff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.search-box button:hover {
+  background: #005fcc;
+}
+
+/* Info box */
+.info-box {
+  position: absolute;
+  top: 75px;
+  left: 5px;
+  transform: none;
+  margin-top: 0;
+  padding: 10px 15px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  display: none;
+  text-align: left;
+  color: #333;
+  width: auto;
+  max-width: 90%;
+  font-size: 14px;
+}
+
+.filter-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 440px;
+  background: #ffffff;
+  padding: 10px 20px 20px;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  border-radius: 15px 0 0 15px;
+}
+
+.filter-panel.open {
+  transform: translateX(0);
+}
+
+.filter-panel h2 {
+  margin-top: 35px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+.filter-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 5px;
+}
+
+.jenjang-checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.jenjang-checkbox-group label {
+  font-size: 14px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#filterBtn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  margin-top: auto;
+  width: 100%;
+  font-weight: bold;
+}
+
+#filterBtn:hover {
+  background: #218838;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: #96efe7ff;
+  color: #555;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover {
+  background: #9cebdfff;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+    width: 100%; 
+  }
+
+  .dashboard h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    width: 100%; 
+  }
+
+  .search-box {
+    width: 90%;
+    display: flex;
+    gap: 5px;
+    margin-left: 0; 
+  }
+
+  .search-box input {
+    flex-grow: 1; 
+    flex-shrink: 1;
+    min-width: 50px;
+    padding: 8px 10px;
+    margin: 0; 
+  }
+
+  .search-box button {
+    padding: 8px 10px;
+    flex-shrink: 0;
+  }
+
+  #map {
+    padding-top: 85px; 
+  }
+
+  .info-box {
+    top: 93px;
+    font-size: 10px;
+    left: 0px;
+  }
+
+  .filter-panel {
+    width: 50%;
+    height: 450px;
+    border-radius: 15px 0 0 15px;
+  }
+}

@@ -1,0 +1,673 @@
+/* Map fullscreen */
+#map {
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  padding-top: 80px;
+  margin: 0;
+}
+
+.dashboard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  background: rgba(0, 17, 255, 0.95);
+  padding: 24px 20px;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: none;
+  text-align: left;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-beetween;
+  gap: 20px;
+}
+
+.dashboard h2 {
+  margin: 0;
+  padding-right: 210px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffffff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.charts-page-ai{
+  padding: 10px 16px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: 0;
+  /* background: linear-gradient(135deg, #c334beff 0%, #a3369aff 100%); */
+  color: white;
+  background: rgb(73, 151, 229);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.charts-page-ai:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 1;
+  margin-left: 0;
+}
+
+.search-box input {
+  width: 200px;
+  padding: 8px 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+  border-color: #0078ff;
+}
+
+.search-box button {
+  background: #00a6ffff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.search-box button:hover {
+  background: #005fcc;
+}
+
+/* Tombol untuk halaman charts lengkap */
+.charts-page-btn {
+  /* padding-top: 9px; 
+  padding-bottom: 9px;
+  padding-left: 12px; 
+  padding-right: 12px; */
+  padding: 10px 16px;
+  width: auto;
+  display: inline-block;
+  /* background: linear-gradient(135deg, #b22ee6ff 0%, #d488ebff 100%); */
+  margin-bottom: 0;
+  margin-right: 120px;
+  color: white;
+  background: rgb(62, 157, 230);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.charts-page-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Tombol untuk panel charts kecil */
+.charts-toggle-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+  color: #495057;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.charts-toggle-btn:hover {
+  background: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.charts-toggle-btn.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Charts Toggle Button
+.charts-toggle-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+  white-space: nowrap;
+  margin-right: 0;
+}
+
+.charts-toggle-btn:hover {
+  background: #218838;
+  transform: translateY(-1px);
+}
+
+.charts-toggle-btn.active {
+  background: #dc3545;
+}
+
+.charts-toggle-btn.active:hover {
+  background: #c82333;
+} */
+
+/* Charts Panel */
+.charts-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100vh;
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 1500;
+  overflow-y: auto;
+  font-family: "Segoe UI", sans-serif;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.charts-panel.open {
+  transform: translateX(0);
+}
+
+.charts-panel h3 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.close-charts-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: #96efe7;
+  color: #555;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-charts-btn:hover {
+  background: #9cebdf;
+}
+
+.chart-controls {
+  margin-bottom: 20px;
+}
+
+.control-group {
+  margin-bottom: 15px;
+}
+
+.control-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.control-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.jenjang-checkboxes {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.jenjang-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.jenjang-checkboxes input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+/* Chart Styles */
+.chart-container {
+  margin-top: 20px;
+}
+
+.bar-chart {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  height: 250px;
+  padding: 20px 0;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.bar-label {
+  font-size: 10px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bars {
+  display: flex;
+  gap: 2px;
+  align-items: end;
+  height: 200px;
+}
+
+.bar {
+  position: relative;
+  min-width: 15px;
+  border-radius: 3px 3px 0 0;
+  transition: all 0.3s ease;
+}
+
+.bar:hover {
+  opacity: 0.8;
+}
+
+.sd-bar {
+  background: #3498db;
+}
+
+.smp-bar {
+  background: #2ecc71;
+}
+
+.sma-bar {
+  background: #e74c3c;
+}
+
+.bar-value {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.bar-total {
+  font-size: 10px;
+  margin-top: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.pie-chart {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.pie-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+.pie-info div {
+  font-size: 12px;
+  margin: 2px 0;
+}
+
+.table-chart {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.table-chart table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table-chart th,
+.table-chart td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.table-chart th {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.table-chart tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+}
+
+.chart-summary {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  border-left: 4px solid #007bff;
+}
+
+.chart-summary strong {
+  color: #333;
+}
+
+/* Info box */
+.info-box {
+  position: absolute;
+  top: 90px;
+  left: 5px;
+  transform: none;
+  margin-top: 0;
+  padding: 10px 15px;
+  background: #f8f5f5ff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  display: none;
+  text-align: left;
+  color: #333;
+  width: auto;
+  max-width: 90%;
+  font-size: 14px;
+}
+
+/* Filter Panel */
+.filter-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 440px;
+  background: #ffffff;
+  padding: 10px 20px 20px;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  border-radius: 15px 0 0 15px;
+}
+
+.filter-panel.open {
+  transform: translateX(0);
+}
+
+.filter-panel h2 {
+  margin-top: 35px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+.filter-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 5px;
+}
+
+.jenjang-checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.jenjang-checkbox-group label {
+  font-size: 14px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#filterBtn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  margin-top: auto;
+  width: 100%;
+  font-weight: bold;
+}
+
+#filterBtn:hover {
+  background: #218838;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: #96efe7ff;
+  color: #555;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover {
+  background: #9cebdfff;
+}
+
+.but{
+  margin-top: -2px;
+  display: flex;    
+  gap: 10px;          
+  margin-right: 0px;
+  /* width: 100%; */
+}
+
+
+
+@media (max-width: 768px) {
+
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    padding: 10px 7px;
+  }
+
+  .dashboard h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    padding-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .but{
+    width: 100%;
+  }
+
+  /* Tombol Grafik dibuat full width */
+  .charts-toggle-btn {
+    width: 93%;
+    margin-left: -13px;
+    padding: 10px;
+    order: 1;
+  }
+
+  /* Kotak pencarian ke bawah */
+  .search-box {
+    width: 95%;
+    display: flex;
+    gap: 6px;
+    margin-left: -11px;
+    order: 2;
+  }
+
+  .charts-page-btn {
+    width: 46%;
+    padding: 10px;
+    margin-right: 0;
+  }
+
+  
+
+  .charts-page-ai{
+    padding: 10px 6px;
+    width: 46%;
+    margin-left: 5px;
+  }
+
+  .search-box input {
+    flex-grow: 1;
+    min-width: 50px;
+    padding: 8px 10px;
+  }
+
+  .search-box button {
+    padding: 8px 10px;
+    flex-shrink: 0;
+  }
+
+  /* Map di bawah semua elemen */
+  #map {
+    padding-top: 90px;
+  }
+
+  .filter-panel {
+    width: 60%;
+    height: 450px;
+    border-radius: 15px 0 0 15px;
+  }
+
+  .info-box {
+    top: 145px;
+    font-size: 10px;
+    left: 0px;
+  }
+
+  .charts-panel {
+    width: 100%;
+    height: 70vh;
+    bottom: 0;
+    top: auto;
+    transform: translateY(100%);
+  }
+
+  .charts-panel.open {
+    transform: translateY(0);
+  }
+
+  .bar-chart {
+    height: 200px;
+  }
+
+  .pie-chart {
+    grid-template-columns: 1fr;
+  }
+}
